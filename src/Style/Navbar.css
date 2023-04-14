@@ -1,56 +1,91 @@
 .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 0 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar_ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.navbar_links li {
+  margin-right: 20px;
+}
+
+.navbar_links a {
+  color: #333;
+  text-decoration: none;
+}
+
+.navbar_links a:hover {
+  color: #777676;
+}
+
+.navbar_auth {
+  width: 190px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20px;
+}
+
+.navbar_auth_login,
+.navbar_auth_signup  {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #019bba;
+}
+
+.menu_btn {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar_auth_login,
+  .navbar_auth_signup {
+    display: none;
+  }
+
+  .navbar {
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    transition: transform 0.3s ease-in-out;
+  }
+  .menu_btn {
+    display: block;
+    margin-left: 120px;
+  }
+
+  .navbar_ul {
+    width: 200px;
+    height: 260px;
+    position: absolute;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    height: 80px;
-    padding: 0 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 23px;
+    background-color: #e7e7e7;
+    border-radius: 20px;
   }
-  
-  
-  .navbar-links ul {
-    display: flex;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+  .navbar_links li {
+    font-size: 24px;
   }
-  
-  .navbar-links li {
-    margin-right: 20px;
+  .navbar_links.hidden {
+    display: none;
   }
-  
-  .navbar-links a {
-    color: #333;
-    text-decoration: none;
+
+  .navbar_links.visible {
+    display: block;
   }
-  
-  .navbar-links a:hover {
-    color: #777676;
-  }
-  
-  .navbar-auth {
-    width: 190px;
-    display: flex;
-    justify-content: space-between;
-    margin-right: 20px;
-  }
-  
-  .navbar-auth-login,
-  .navbar-auth-signup  {
-    border: none;
-    border-radius: 5px;
-    padding: 8px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    border: 1px solid #019bba;
-  }
-  
-  
-  @media only screen and (max-width: 768px) {
-    /* Styles for screens smaller than 768px */
-    .navbar-links {
-      display: none;
-    }
-  }
-  
+}
