@@ -7,14 +7,32 @@ const Registration = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstNameError, setFirstNameError] = useState("");
 
-  const handleFirstNameChange = (e) => setFirstName(e.target.value);
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+    if (!e.target.value) {
+      setFirstNameError("The name field is required");
+    } else if (/^[.,?/"$*]+$/.test(e.target.value)) {
+      setFirstNameError("Extra characters are not allowed in the name field");
+    } else {
+      setFirstNameError("");
+    }
+  };
   const handleLastNameChange = (e) => setLastName(e.target.value);
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!firstName || /^[.,?/"$*]+$/.test(firstName)) {
+      setFirstNameError("Please enter a valid name");
+      return;
+    }
+
+    console.log("Form data:", { firstName, lastName });
   };
 
   return (
@@ -29,6 +47,7 @@ const Registration = () => {
           value={firstName}
           onChange={handleFirstNameChange}
         />
+        {firstNameError && <span className="error">{firstNameError}</span>}
         
         <label className="registration_label" htmlFor="lastName">Last Name:</label>
         <input
