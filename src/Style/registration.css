@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 .registration_form {
   height: 34rem;
@@ -54,4 +55,8 @@
 }
 .back_btn:hover {
     background-color: #007676;
+}
+.error {
+  color: red;
+  font-size: 18px;
 }

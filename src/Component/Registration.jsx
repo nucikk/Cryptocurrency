@@ -8,6 +8,8 @@ const Registration = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstNameError, setFirstNameError] = useState("");
+  const [emailError, setEmailError] = useState("")
+
 
 
   const handleFirstNameChange = (e) => {
@@ -21,8 +23,19 @@ const Registration = () => {
     }
   };
   const handleLastNameChange = (e) => setLastName(e.target.value);
-  const handleEmailChange = (e) => setEmail(e.target.value);
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    if (!e.target.value) {
+      setEmailError("The email field is required");
+    } else {
+      setEmailError("");
+    }
+  };
+
   const handlePasswordChange = (e) => setPassword(e.target.value);
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +45,12 @@ const Registration = () => {
       return;
     }
 
-    console.log("Form data:", { firstName, lastName });
+    if(!email) {
+      setEmailError("Please enter a valid email address");
+      return;
+    }
+
+    console.log("Form data:", { firstName, lastName, email });
   };
 
   return (
@@ -68,7 +86,8 @@ const Registration = () => {
           value={email}
           onChange={handleEmailChange}
         />
-        
+          {emailError && <span className="error">{emailError}</span>}
+
         <label className="registration_label" htmlFor="password">Password:</label>
         <input
           className="registration_input"
