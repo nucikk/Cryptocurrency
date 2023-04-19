@@ -12,10 +12,8 @@ const Registration = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-
- //! ეს ფუნქცია ამოწმებს სახელის inputs
- //!თუ inputs ცარიელია, ის აბრუნებს errors თუ ველი შეიცავს დამატებით სიმბოლოებს აბრუნებს ერორს
-
+  //! ეს ფუნქცია ამოწმებს სახელის inputs
+  //!თუ inputs ცარიელია, ის აბრუნებს errors თუ ველი შეიცავს დამატებით სიმბოლოებს აბრუნებს ერორს
   function validateFirstName(name) {
     if (!name) {
       return "The name field is required";
@@ -44,8 +42,7 @@ const Registration = () => {
   };
 
   //! ეს ფუნქცია ამოწმებს პაროლის ინპუტს.
-//! თუ პაროლი 6 სიმბოლოზე ნაკლებია ან არ შეიცავს ერთ ციფრს და ერთ დიდ ასოს, ის აბრუნებს ერორს
-
+  //! თუ პაროლი 6 სიმბოლოზე ნაკლებია ან არ შეიცავს ერთ ციფრს და ერთ დიდ ასოს, ის აბრუნებს ერორს
   const validatePassword = (password) => {
     if (password.length < 6 || !/\d/.test(password)) {
       return "Password must be at least 6 characters long and contain at least one digit and one capital letter";
@@ -101,7 +98,6 @@ const Registration = () => {
           placeholder="Type your last name..."
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-
         />
         {lastNameError && <span className="error">{lastNameError}</span>}
 
@@ -115,7 +111,6 @@ const Registration = () => {
           placeholder="Type your email..."
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-
         />
         {emailError && <span className="error">{emailError}</span>}
 
@@ -129,11 +124,10 @@ const Registration = () => {
           placeholder="Type your password..."
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-
         />
         {passwordError && <div className="error">{passwordError}</div>}
-
-        <button className="registration_btn" type="submit">
+      
+          <button className="registration_btn" type="submit">
           Register
         </button>
 
@@ -142,6 +136,7 @@ const Registration = () => {
             Back
           </button>
         </Link>
+      
       </form>
     </div>
   );
