@@ -8,9 +8,9 @@ const Registration = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstNameError, setFirstNameError] = useState("");
-  const [emailError, setEmailError] = useState("")
-
-
+  const [lastNameError, setLastNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
@@ -22,8 +22,16 @@ const Registration = () => {
       setFirstNameError("");
     }
   };
-  const handleLastNameChange = (e) => setLastName(e.target.value);
-
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+    if (!e.target.value) {
+      setLastNameError("The name field is required");
+    } else if (/^[.,?/"$*]+$/.test(e.target.value)) {
+      setLastNameError("Extra characters are not allowed in the name field");
+    } else {
+      setLastNameError("");
+    }
+  };
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     if (!e.target.value) {
@@ -35,8 +43,6 @@ const Registration = () => {
 
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -44,19 +50,31 @@ const Registration = () => {
       setFirstNameError("Please enter a valid name");
       return;
     }
-
-    if(!email) {
+    if (!lastName || /^[.,?/"$*]+$/.test(lastName)) {
+      setLastNameError("Please enter a valid name");
+      return;
+    }
+    if (!email) {
       setEmailError("Please enter a valid email address");
       return;
     }
 
-    console.log("Form data:", { firstName, lastName, email });
+    if (password.length < 6 || !/\d/.test(password)) {
+      setPasswordError(
+        "Password must be at least 6 characters long and contain at least one digit and one capital letter"
+      );
+      return;
+    }
+
+    console.log("Form data:", { firstName, lastName, email, password });
   };
 
   return (
     <div className="registration_container">
       <form onSubmit={handleSubmit} className="registration_form">
-        <label className="registration_label" htmlFor="firstName">First Name:</label>
+        <label className="registration_label" htmlFor="firstName">
+          First Name:
+        </label>
         <input
           className="registration_input"
           type="text"
@@ -66,8 +84,10 @@ const Registration = () => {
           onChange={handleFirstNameChange}
         />
         {firstNameError && <span className="error">{firstNameError}</span>}
-        
-        <label className="registration_label" htmlFor="lastName">Last Name:</label>
+
+        <label className="registration_label" htmlFor="lastName">
+          Last Name:
+        </label>
         <input
           className="registration_input"
           type="text"
@@ -76,8 +96,11 @@ const Registration = () => {
           value={lastName}
           onChange={handleLastNameChange}
         />
-        
-        <label className="registration_label" htmlFor="email">Email:</label>
+        {lastNameError && <span className="error">{lastNameError}</span>}
+
+        <label className="registration_label" htmlFor="email">
+          Email:
+        </label>
         <input
           className="registration_input"
           type="email"
@@ -86,9 +109,11 @@ const Registration = () => {
           value={email}
           onChange={handleEmailChange}
         />
-          {emailError && <span className="error">{emailError}</span>}
+        {emailError && <span className="error">{emailError}</span>}
 
-        <label className="registration_label" htmlFor="password">Password:</label>
+        <label className="registration_label" htmlFor="password">
+          Password:
+        </label>
         <input
           className="registration_input"
           type="password"
@@ -97,11 +122,16 @@ const Registration = () => {
           value={password}
           onChange={handlePasswordChange}
         />
-        
-        <button className="registration_btn" type="submit">Register</button>
-        
+        {passwordError && <div className="error">{passwordError}</div>}
+
+        <button className="registration_btn" type="submit">
+          Register
+        </button>
+
         <Link to="/">
-          <button className="back_btn" type="submit">Back</button>
+          <button className="back_btn" type="submit">
+            Back
+          </button>
         </Link>
       </form>
     </div>
