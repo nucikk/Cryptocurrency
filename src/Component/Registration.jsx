@@ -12,59 +12,65 @@ const Registration = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleFirstNameChange = (e) => {
-    setFirstName(e.target.value);
-    if (!e.target.value) {
-      setFirstNameError("The name field is required");
-    } else if (/^[.,?/"$*]+$/.test(e.target.value)) {
-      setFirstNameError("Extra characters are not allowed in the name field");
-    } else {
-      setFirstNameError("");
+
+ //! ეს ფუნქცია ამოწმებს სახელის inputs
+ //!თუ inputs ცარიელია, ის აბრუნებს errors თუ ველი შეიცავს დამატებით სიმბოლოებს აბრუნებს ერორს
+
+  function validateFirstName(name) {
+    if (!name) {
+      return "The name field is required";
     }
-  };
-  const handleLastNameChange = (e) => {
-    setLastName(e.target.value);
-    if (!e.target.value) {
-      setLastNameError("The name field is required");
-    } else if (/^[.,?/"$*]+$/.test(e.target.value)) {
-      setLastNameError("Extra characters are not allowed in the name field");
-    } else {
-      setLastNameError("");
+    if (/^[.,?/"$*]+$/.test(name)) {
+      return "Extra characters are not allowed in the name field";
     }
-  };
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    if (!e.target.value) {
-      setEmailError("The email field is required");
-    } else {
-      setEmailError("");
+    return "";
+  }
+
+  const validateLastName = (name) => {
+    if (!name) {
+      return "The name field is required";
     }
+    if (/^[.,?/"$*]+$/.test(name)) {
+      return "Extra characters are not allowed in the name field";
+    }
+    return "";
   };
 
-  const handlePasswordChange = (e) => setPassword(e.target.value);
+  const validateEmail = (email) => {
+    if (!email) {
+      return "The email field is required";
+    }
+    return "";
+  };
+
+  //! ეს ფუნქცია ამოწმებს პაროლის ინპუტს.
+//! თუ პაროლი 6 სიმბოლოზე ნაკლებია ან არ შეიცავს ერთ ციფრს და ერთ დიდ ასოს, ის აბრუნებს ერორს
+
+  const validatePassword = (password) => {
+    if (password.length < 6 || !/\d/.test(password)) {
+      return "Password must be at least 6 characters long and contain at least one digit and one capital letter";
+    }
+    return "";
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!firstName || /^[.,?/"$*]+$/.test(firstName)) {
-      setFirstNameError("Please enter a valid name");
-      return;
-    }
-    if (!lastName || /^[.,?/"$*]+$/.test(lastName)) {
-      setLastNameError("Please enter a valid name");
-      return;
-    }
-    if (!email) {
-      setEmailError("Please enter a valid email address");
-      return;
-    }
+    const firstNameError = validateFirstName(firstName);
+    setFirstNameError(firstNameError);
+    if (firstNameError) return;
 
-    if (password.length < 6 || !/\d/.test(password)) {
-      setPasswordError(
-        "Password must be at least 6 characters long and contain at least one digit and one capital letter"
-      );
-      return;
-    }
+    const lastNameError = validateLastName(lastName);
+    setLastNameError(lastNameError);
+    if (lastNameError) return;
+
+    const emailError = validateEmail(email);
+    setEmailError(emailError);
+    if (emailError) return;
+
+    const passwordError = validatePassword(password);
+    setPasswordError(passwordError);
+    if (passwordError) return;
 
     console.log("Form data:", { firstName, lastName, email, password });
   };
@@ -81,7 +87,7 @@ const Registration = () => {
           name="firstName"
           placeholder="Type your first name..."
           value={firstName}
-          onChange={handleFirstNameChange}
+          onChange={validateFirstName}
         />
         {firstNameError && <span className="error">{firstNameError}</span>}
 
@@ -94,7 +100,7 @@ const Registration = () => {
           name="lastName"
           placeholder="Type your last name..."
           value={lastName}
-          onChange={handleLastNameChange}
+          onChange={validateLastName}
         />
         {lastNameError && <span className="error">{lastNameError}</span>}
 
@@ -107,7 +113,7 @@ const Registration = () => {
           name="email"
           placeholder="Type your email..."
           value={email}
-          onChange={handleEmailChange}
+          onChange={validateEmail}
         />
         {emailError && <span className="error">{emailError}</span>}
 
@@ -120,7 +126,7 @@ const Registration = () => {
           name="password"
           placeholder="Type your password..."
           value={password}
-          onChange={handlePasswordChange}
+          onChange={validatePassword}
         />
         {passwordError && <div className="error">{passwordError}</div>}
 
