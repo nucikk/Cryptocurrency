@@ -87,7 +87,7 @@ const Registration = () => {
           name="firstName"
           placeholder="Type your first name..."
           value={firstName}
-          onChange={validateFirstName}
+          onChange={(e) => setFirstName(e.target.value)}
         />
         {firstNameError && <span className="error">{firstNameError}</span>}
 
@@ -100,7 +100,8 @@ const Registration = () => {
           name="lastName"
           placeholder="Type your last name..."
           value={lastName}
-          onChange={validateLastName}
+          onChange={(e) => setLastName(e.target.value)}
+
         />
         {lastNameError && <span className="error">{lastNameError}</span>}
 
@@ -113,7 +114,8 @@ const Registration = () => {
           name="email"
           placeholder="Type your email..."
           value={email}
-          onChange={validateEmail}
+          onChange={(e) => setEmail(e.target.value)}
+
         />
         {emailError && <span className="error">{emailError}</span>}
 
@@ -126,7 +128,8 @@ const Registration = () => {
           name="password"
           placeholder="Type your password..."
           value={password}
-          onChange={validatePassword}
+          onChange={(e) => setPassword(e.target.value)}
+
         />
         {passwordError && <div className="error">{passwordError}</div>}
 
