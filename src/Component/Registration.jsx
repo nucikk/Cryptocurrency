@@ -12,6 +12,7 @@ const Registration = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+
   //! ეს ფუნქცია ამოწმებს სახელის inputs
   //!თუ inputs ცარიელია, ის აბრუნებს errors თუ ველი შეიცავს დამატებით სიმბოლოებს აბრუნებს ერორს
   function validateFirstName(name) {
@@ -68,9 +69,12 @@ const Registration = () => {
     const passwordError = validatePassword(password);
     setPasswordError(passwordError);
     if (passwordError) return;
+   
 
-    console.log("Form data:", { firstName, lastName, email, password });
+    console.log("Form data: ", {firstName, lastName, email, password});
   };
+
+
 
   return (
     <div className="registration_container">
@@ -126,17 +130,18 @@ const Registration = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         {passwordError && <div className="error">{passwordError}</div>}
-      
-          <button className="registration_btn" type="submit">
+
+        <Link to="/login">
+        <button className="registration_btn" type="submit">
           Register
         </button>
+        </Link>
 
         <Link to="/">
           <button className="back_btn" type="submit">
             Back
           </button>
         </Link>
-      
       </form>
     </div>
   );
