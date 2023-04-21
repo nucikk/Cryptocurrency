@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Style/registration.css";
+import Navbar from "./Navbar";
 
 const Registration = () => {
   const [firstName, setFirstName] = useState("");
@@ -76,8 +77,11 @@ const Registration = () => {
 
 
 
-  return (
+  return (    
+    <>
+    <Navbar />
     <div className="registration_container">
+
       <form onSubmit={handleSubmit} className="registration_form">
         <label className="registration_label" htmlFor="firstName">
           First Name:
@@ -131,10 +135,16 @@ const Registration = () => {
         />
         {passwordError && <div className="error">{passwordError}</div>}
 
-        <Link to="/login">
+
         <button className="registration_btn" type="submit">
           Register
         </button>
+
+
+        <Link to="/login">
+          <button className="login_btn" type="submit">
+            Login
+          </button>
         </Link>
 
         <Link to="/">
@@ -142,8 +152,11 @@ const Registration = () => {
             Back
           </button>
         </Link>
+
+        
       </form>
     </div>
+    </>
   );
 };
 

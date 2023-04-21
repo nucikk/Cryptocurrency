@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../Style/registration.css";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,8 @@ const Login = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="registration_container">
       <form className="registration_form" onSubmit={handleSubmit}>
         <label className="registration_label" htmlFor="email">
@@ -43,10 +46,11 @@ const Login = () => {
         </button>
 
         <Link to="/registration">
-          <button className="back_btn">Register</button>
+          <button className="register_btn">Register</button>
         </Link>
       </form>
     </div>
+    </>
   );
 };
 
