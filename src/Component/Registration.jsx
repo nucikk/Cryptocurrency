@@ -71,7 +71,7 @@ const Registration = () => {
     setPasswordError(passwordError);
     if (passwordError) return;
    
-
+    localStorage.setItem('registeredUser', JSON.stringify({ email, password }));
     console.log("Form data: ", {firstName, lastName, email, password});
   };
 

@@ -1,4 +1,4 @@
-.registration_container {
+.registration_container,.login_container {
   height:55.0625rem;
   overflow: hidden;
   background-color: aliceblue;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.registration_form {
+.registration_form,.login_form {
   height: 34rem;
   width: 27rem;
 }
@@ -74,6 +74,10 @@
   color: #fff;
   background-color:#6304bb
 }
+.circuit_img {
+  width: 200px;
+  display: none;
+}
 
 @media only screen and (max-width: 768px) {
   .registration_container {
@@ -81,10 +85,17 @@
     display: flex;
     align-items: flex-start;
   }
+  .login_container {
+    height: 55rem;
+  }
 
-  .registration_form {
-    width: 23rem;
-    margin-top: 96px;
+  .registration_form, .login_form{
+    width: 23rem;   
+    margin-top: 5.875rem;
+  }
+
+  .login_form {
+    margin-top: 19.875rem;
   }
   .registration_input {
     margin-bottom: 30px;
@@ -99,5 +110,10 @@
   
   .back_btn {
     margin: 0;
+  }
+  .circuit_img {
+    position: absolute;
+    margin: 100px ;
+    display: block;
   }
 }

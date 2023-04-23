@@ -28,9 +28,6 @@ const PageList = () => {
             </li>
           ))}
         </ul>
-        {/* <button onClick={toggleMenu}>
-          {showMenu ? "cose" : "open"}
-        </button> */}
         {showMenu && (
           <ul className="navbar_menu">
             {navLinks.map(({ name, path }, index) => (
