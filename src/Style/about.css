@@ -1,0 +1,34 @@
+.blog_section {
+  max-height: 19.875rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blog_heading {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 36px 0 0 190px;
+}
+
+.news_heading {
+  font-size: 45px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.news_description {
+  font-size: 20px;
+  line-height: 1.5;
+  color: #b4b0b0;
+}
+
+@media only screen and (max-width: 768px) {
+  .blog_section {
+    position: absolute;
+    margin: 90px 19px;
+  }
+  .news_description {
+    font-size: 18px;
+  }
+}
