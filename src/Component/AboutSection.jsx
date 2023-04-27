@@ -3,8 +3,10 @@ import "../Style/about.css";
 import { Link } from "react-router-dom";
 
 function AboutSection() {
+  const [showAll, setShowAll] = useState(false);
+
   const buttons = [
-    { name: "View all"},
+    { name: "View all", onClick: () => setShowAll(true) },
     { name: "Crypto"},
     { name: "Blockchain"},
     { name: "Announcements"},
@@ -24,9 +26,22 @@ function AboutSection() {
             <p>discover our latest product updates, partnership</p>
             <p>announcements, user stories, and more.</p>
             <div className="news_box_btn">
-              {buttons.map((button, index) => (
-                <button key={index} className="btn_insight"> {button.name} </button>
-              ))}
+            {buttons
+                .filter((_, index) => showAll || index < 5) 
+                .map((button, index) => (
+                  <button
+                    key={index}
+                    className="btn_insight"
+                    onClick={button.onClick}
+                  >
+                    {button.name}
+                  </button>
+                ))}
+              <div className="btn_show_all">
+                <button className="btn_insight" onClick={() => setShowAll(true)}>
+                  View all
+                </button>
+              </div>
             </div>
           </div>
         </div>
