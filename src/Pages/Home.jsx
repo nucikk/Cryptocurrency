@@ -1,13 +1,21 @@
-import React from 'react'
-import Navbar from '../Component/Navbar'
-import AboutSection from '../Component/AboutSection'
+import React from "react";
+import Navbar from "../Component/Navbar";
+import AboutSection from "../Component/AboutSection";
+import Content from "../Component/Content";
+// import "../Style/about.css"
+import "../Style/Navbar.css";
 const Home = () => {
   return (
-    <div>
-        <Navbar/>
-        <AboutSection />
-    </div>
-  )
-}
+    <>
+      <Navbar />
 
-export default Home
+      <AboutSection />
+
+      <div>
+        <Content />
+      </div>
+    </>
+  );
+};
+
+export default Home;

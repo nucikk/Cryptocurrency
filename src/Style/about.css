@@ -35,7 +35,9 @@
   width: 59.375rem;
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 30px; 
+  border: 1px solid #7c7c7c;
+  border-radius: 13px;
 }
 .btn_insight {
   background-color: transparent;
@@ -63,6 +65,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: none;
   }
   .btn_insight {
     width: 22.25rem;
