@@ -4,6 +4,7 @@ import AboutSection from "../Component/AboutSection";
 import Content from "../Component/Content";
 // import "../Style/about.css"
 import "../Style/Navbar.css";
+import Footer from "../Component/Footer";
 const Home = () => {
   return (
     <>
@@ -14,6 +15,7 @@ const Home = () => {
       <div>
         <Content />
       </div>
+      <Footer />
     </>
   );
 };
