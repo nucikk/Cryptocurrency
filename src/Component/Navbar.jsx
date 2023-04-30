@@ -19,7 +19,10 @@ const Navbar = () => {
         <PageList />
       </div>
       <div className="navbar_auth">
-        <button className="navbar_auth_login">Login</button>
+        <Link to="/login">
+            <button className="navbar_auth_login">Login</button>
+        </Link>
+
         <Link to="/registration">
           <button className="navbar_auth_signup">Signup</button>
         </Link>

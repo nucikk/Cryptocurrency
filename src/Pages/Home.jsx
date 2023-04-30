@@ -9,13 +9,9 @@ const Home = () => {
   return (
     <>
       <Navbar />
-
-      <AboutSection />
-
       <div>
-        <Content />
+        <AboutSection />
       </div>
-      <Footer />
     </>
   );
 };

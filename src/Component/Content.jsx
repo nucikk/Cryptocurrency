@@ -1,11 +1,13 @@
 import React from "react";
 import "../Style/content.css";
 import contentData from "../Server/contentData";
+import Footer from "./Footer";
 
 
 const Content = () => {
  
   return (
+    <>
     <div className="content_section">
       {contentData.map((content) => (
         <div key={content.id} className="content_card">
@@ -20,8 +22,10 @@ const Content = () => {
             <button className="content_read_more">Read More</button>
           </div>
         </div>
-      ))}
-    </div>
+           
+      ))}   <Footer />
+    </div>  
+ </>
   );
 };
 
